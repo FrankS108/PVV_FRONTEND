@@ -1,0 +1,64 @@
+
+:root{
+    --font: 'Satoshi', sans-serif;
+    --background: #212528;
+    /*--background-card: #3E444A;*/
+    --background-card: rgb(39, 43, 46);
+    --secondary-text: #67696B;
+    --primary-text: #FFFFFF;
+    --primary-color: #FE413D;
+    --secondary-color: #FDBC2C;
+    --update: #79C7E5;
+}
+
+.enterprise{
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+.enterprise__information{
+    background-color: var(--background-card);
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 1280px) {
+    .enterprise__information{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+.add__icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+@media (min-width: 1280px) {
+    .add__icon{
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.add__icon svg{
+    width: 100%;
+    max-width: 10rem;
+}
+
+.add__icon a{
+    text-decoration: none;
+    color: var(--secondary-text);
+    transition: color 0.350s ease-in-out;
+}
+
+.add__icon a:hover{
+    color: white;
+}

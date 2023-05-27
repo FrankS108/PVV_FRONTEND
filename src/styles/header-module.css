@@ -1,0 +1,124 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/chevron-right.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/add.css');
+
+.container {  
+  max-width: 120rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .inputs{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.search{
+    outline: 0;
+    width: 30rem;
+    height: 5rem;
+    border-radius: 0.7rem;
+    background-color: var(--primary-text);
+    appearance: none;
+    font-size: 1.8rem;
+    padding: 0 1.6rem;
+}
+
+.add{
+    padding: 2rem;
+    font-size: 3rem;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(to left, var(--primary-text) 50%, #90D36F 50%) right;    
+    transition: 0.5s ease-in-out;
+    background-size: 200%;
+}
+
+.add:hover{
+    background-position: left;
+}
+
+@media (min-width: 1280px) {
+    .inputs{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.header__block{
+    color: var(--secondary-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 1280px) {
+    .header__block{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+.header__title{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 3rem;
+    color: var(--primary-text);
+}
+
+.header__nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 1280px) {
+    .header__nav{
+        flex-direction: row;
+        column-gap: 2rem;
+    }
+}
+
+.link{
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    color: var(--secondary-text);
+    transition: color 0.350s ease-in-out;
+}
+
+.link:hover:not(.selected){
+    transition: color 0.350s ease-in-out;
+    color: var(--primary-text);
+}
+
+.selected{
+    color: var(--primary-color);
+}
+
+.header__profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}

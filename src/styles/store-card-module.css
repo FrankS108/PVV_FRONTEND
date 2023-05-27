@@ -1,0 +1,56 @@
+:root{
+    --font: 'Satoshi', sans-serif;
+    --background: #212528;
+    /*--background-card: #3E444A;*/
+    --background-card: rgb(39, 43, 46);
+    --secondary-text: #67696B;
+    --primary-text: #FFFFFF;
+    --primary-color: #FE413D;
+    --secondary-color: #FDBC2C;
+    --update: #79C7E5;
+}
+
+.store__card{
+    background-color: var(--secondary-text);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (min-width: 1280px) {
+    .store__card{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.store__card p{
+    padding: 3rem;
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+}
+
+.buttons--store{
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.buttons--store svg{
+    max-width: 5rem;
+    cursor: pointer;
+    
+}
+
+@media (min-width: 1280px) {
+    .buttons--store{
+        flex-direction: row;
+        margin-right: 2rem;
+    }
+}

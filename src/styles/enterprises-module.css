@@ -1,0 +1,39 @@
+:root{
+    --font: 'Satoshi', sans-serif;
+    --background: #212528;
+    /*--background-card: #3E444A;*/
+    --background-card: rgb(39, 43, 46);
+    --secondary-text: #67696B;
+    --primary-text: #FFFFFF;
+    --primary-color: #FE413D;
+    --secondary-color: #FDBC2C;
+    --update: #79C7E5;
+}
+
+.enterprises__block{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 1280px) {
+    .enterprises__block{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.text__alternative{
+    font-family: 'Satoshi', sans-serif;
+    color: white;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--secondary-text);
+    margin: 1rem auto;
+    width: 90%;
+    max-width: 120rem;
+    border-radius: 1rem;
+}

@@ -1,0 +1,59 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/chevron-right.css');
+:root{
+    --font: 'Satoshi', sans-serif;
+    --background: #212528;
+    /*--background-card: #3E444A;*/
+    --background-card: rgb(39, 43, 46);
+    --secondary-text: #67696B;
+    --primary-text: #FFFFFF;
+    --primary-color: #FE413D;
+    --secondary-color: #FDBC2C;
+    --update: #79C7E5;
+}
+
+.card__enterprise{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-card);
+    padding: 2rem;
+    border-radius: 3rem;
+}
+
+.card__name{
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.card__adress{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    margin: 0;
+}
+
+.card__phone{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    margin: 0;
+}
+
+.button{
+    background: linear-gradient(to left, var(--primary-text) 50%, var(--primary-color) 50%) right;
+    background-size: 200%;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    padding: 1.5rem;
+    border-radius: 5rem;
+    max-width: max-content;
+    align-self: flex-end;
+    transition: 0.5s ease-in-out;
+}
+
+.button:hover{
+    background-position: left;
+}
