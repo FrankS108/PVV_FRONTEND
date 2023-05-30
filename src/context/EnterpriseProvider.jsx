@@ -396,6 +396,7 @@ const EnterpriseProvider = ({ children }) => {
     useEffect(() => {
         const token = sessionStorage.getItem('token')
         if(!token){
+            setLoading(false);
             return
         }
 
