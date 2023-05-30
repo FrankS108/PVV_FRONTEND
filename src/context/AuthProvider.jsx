@@ -56,7 +56,8 @@ const AuthProvider = ({ children }) => {
             value={{
                 auth,
                 setAuth,
-                loading
+                loading,
+                setLoading
             }}
         >
             {children}

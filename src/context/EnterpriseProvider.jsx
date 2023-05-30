@@ -392,7 +392,7 @@ const EnterpriseProvider = ({ children }) => {
         console.log(searchCopy);
     }
 
-    
+    /*    
     useEffect(() => {
         const token = sessionStorage.getItem('token')
         if(!token){
@@ -421,6 +421,7 @@ const EnterpriseProvider = ({ children }) => {
 
         return () => { getEnterprises() }
     }, [])
+    */
 
     const getEnterprises = async() => {
         const token = sessionStorage.getItem('token')

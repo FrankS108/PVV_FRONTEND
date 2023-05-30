@@ -12,7 +12,7 @@ export const Login = () => {
     const [alert, setAlert] = useState({})
 
     const { handleSumbitApi } = useAPI();
-    const { setAuth, loading } = useAuth(); 
+    const { setAuth, loading, setLoading } = useAuth(); 
     const navigate = useNavigate();
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -24,6 +24,7 @@ export const Login = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        setLoading(true);
 
         if([email, password].includes("")){
             setAlert({
@@ -51,6 +52,8 @@ export const Login = () => {
                 msg: error.response.data.msg,
                 error: true
             }) 
+        }finally{
+            setLoading(false);
         }
     }
 
