@@ -7,7 +7,7 @@ import { ProductCard } from '../components/ProductCard';
 
 export const Products = () => {
   const [search, setSearch] = useState("");
-  const { getProducts, products, loading, handleSearchProduct } = useEnterprise();
+  const { getProducts, products, loading, handleSearchProduct, alert } = useEnterprise();
   const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
 
   const params = useParams();
@@ -30,6 +30,8 @@ export const Products = () => {
 
 
   if(loading) return <div style={style}><ClipLoader loading={loading} color="#FDBC2C" size={150}/></div>
+
+  const { msg } = alert;
   return (
     <>
       <div className="inputs container">
@@ -37,6 +39,7 @@ export const Products = () => {
         <button className="add" onClick={handleAdd}>+</button>
       </div>
       <div className="generic__container container">
+        { msg && <Alert alert={alert}/>}
         {
           products.length ? 
           products.map((element, index) => (

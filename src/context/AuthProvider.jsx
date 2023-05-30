@@ -31,6 +31,16 @@ const AuthProvider = ({ children }) => {
                 setAuth(data);
                 window.location.pathname == '/' ? navigate('/enterprises'): navigate(window.location.pathname);
             } catch (error) {
+                if(error.code === "ERR_NETWORK"){
+                    setAlert({
+                        msg: "Error de conexión, intentalo de nuevo.",
+                        error: true
+                    })
+                    setTimeout(() => {
+                        setAlert({})
+                    }, "5000");
+                    handleSumbitApi();
+                }
                 setAuth({})
             } finally {
                 setLoading(false);

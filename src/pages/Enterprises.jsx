@@ -4,10 +4,11 @@ import { EnterpriseCard } from '../components/EnterpriseCard';
 import ClipLoader from "react-spinners/ClipLoader";
 import '../styles/enterprises-module.css'
 import { useEffect } from 'react';
+import { Alert } from '../components/Alert';
 
 export const Enterprises = () => {
 
-  const { getEnterprises,enterprises, loading } = useEnterprise();
+  const { getEnterprises,enterprises, loading, alert} = useEnterprise();
 
   const navigate = useNavigate();
 
@@ -21,7 +22,8 @@ export const Enterprises = () => {
   }, [])
 
   const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
-    
+  
+  const { msg } = alert;
 
   if(loading) return <div style={style}><ClipLoader loading={loading} color="#FDBC2C" size={150}/></div>
   return (
@@ -30,7 +32,9 @@ export const Enterprises = () => {
         <input className="search" type="search" name="" id="search" placeholder="Buscar"/>
         <button className="add" onClick={handleAdd}>+</button>
       </div>
+      { msg && <Alert alert={alert}/>}
       <div className="enterprises__block container">
+        
         {
           enterprises.length ? 
           enterprises.map((element, index) => (

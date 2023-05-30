@@ -2,14 +2,17 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Alert } from '../components/Alert'
 import { useAuth } from '../hooks/useAuth'
+import { useAPI } from '../hooks/useAPI'
 import axiosClient from '../config/axiosClient'
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [alert, setAlert] = useState({})
 
-    const { setAuth } = useAuth(); 
+    const { handleSumbitApi } = useAPI();
+    const { setAuth, loading } = useAuth(); 
     const navigate = useNavigate();
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -34,6 +37,16 @@ export const Login = () => {
             setAuth(data);
             navigate('/enterprises');
         } catch (error) {
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -43,6 +56,10 @@ export const Login = () => {
 
     const { msg } = alert;
 
+    const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
+    
+
+    if(loading) return <div style={style}><ClipLoader loading={loading} color="#FDBC2C" size={150}/></div>
     return (
         <>
             <h1 className='title'>Inicia sesión y administra tus <span>empresas</span></h1>

@@ -5,37 +5,40 @@ import { StoreCard } from "../components/StoreCard"
 import { CollaboratorCard } from "../components/CollaboratorCard"
 import ClipLoader from "react-spinners/ClipLoader";
 import "../styles/enterprise-information-module.css"
+import { Alert } from "../components/Alert"
 
 export const Enterprise = () => {
 
     const params = useParams();
-    const navigate = useNavigate();
-    const { enterprise, getEnterprise, loading } = useEnterprise();
+    
+    const { enterprise, getEnterprise, loading, alert } = useEnterprise();
+    
     const { id } = params;
 
     useEffect(() => {
         getEnterprise(id);
     }, [])
 
-    
-
     const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
+
+    const { msg } = alert;
     
     if(loading) return <div style={style}><ClipLoader loading={loading} color="#FDBC2C" size={150}/></div>
     return (
         <div className="container enterprise">
+            { msg && <Alert alert={alert}/>}
             <div className="enterprise__information">
                 <p>Nombre: {enterprise?.enterprise?.name}</p>
                 <p>Teléfono: {enterprise?.enterprise?.phoneNumber}</p>
                 <p>Email: {enterprise?.enterprise?.email}</p>
             </div>
-
+            
             <div className="">
                 <h2>Colaboradores</h2>
                 <div className="generic__container">
                     {
                         enterprise?.enterprise?.collaborators?.map((element, index) => (
-                            <CollaboratorCard key={index} collaborator={element}/>
+                            <CollaboratorCard key={index} collaborator={element} creator={enterprise?.enterprise?.creator}/>
                         ))
                     }
                 </div>
@@ -54,7 +57,7 @@ export const Enterprise = () => {
                 <div className="generic__container">
                     {
                         enterprise?.stores?.map((element, index) => (
-                            <StoreCard key={index} store={element}/>
+                            <StoreCard key={index} store={element} creator={enterprise?.enterprise?.creator}/>
                         ))
                     }
                 </div>

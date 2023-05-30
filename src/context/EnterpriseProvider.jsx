@@ -1,7 +1,7 @@
 import { useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosClient from "../config/axiosClient";
-
+import { useAPI } from '../hooks/useAPI'
 
 const EnterpriseContext = createContext();
 
@@ -13,7 +13,7 @@ const EnterpriseProvider = ({ children }) => {
     const [alert, setAlert] = useState({})
 
     const navigate = useNavigate();
-
+    const { handleSumbitApi } = useAPI();
     const submitEnterprise = async(enterprise) => {
         setLoading(true);
         const token = sessionStorage.getItem('token')
@@ -42,6 +42,16 @@ const EnterpriseProvider = ({ children }) => {
             }, "5000");
         } catch (error) {
             setLoading(false);
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -82,6 +92,16 @@ const EnterpriseProvider = ({ children }) => {
             }, "5000");
         } catch (error) {
             setLoading(false);
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -113,6 +133,16 @@ const EnterpriseProvider = ({ children }) => {
             setEnterprise(data);
         } catch (error) {
             setLoading(false)
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             console.log(error)
             navigate(`/enterprises`);
         }
@@ -152,6 +182,16 @@ const EnterpriseProvider = ({ children }) => {
             
         } catch (error) {
             setLoading(false);
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -179,11 +219,29 @@ const EnterpriseProvider = ({ children }) => {
         const { _id } = enterprise.enterprise;
 
         try {
-            await axiosClient.post(`/enterprise/delete-collaborators/${_id}`, {id: id}, config);
+            const { data } = await axiosClient.post(`/enterprise/delete-collaborators/${_id}`, {id: id}, config);
             const enterpriseUpdated = {...enterprise};
             enterpriseUpdated.enterprise.collaborators = enterpriseUpdated.enterprise.collaborators.filter(collaborator =>  collaborator._id !== id );
+            setAlert({
+                msg: data.msg,
+                error: false
+            })
+            setTimeout(() => {
+                setAlert({})
+            }, "5000");
             setEnterprise(enterpriseUpdated);
         } catch (error) {
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
+            console.log(error.response.data.msg)
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -216,6 +274,16 @@ const EnterpriseProvider = ({ children }) => {
             //TODO: CAMBIAR ALERTA
             console.log(response);
         } catch (error) {
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -242,6 +310,17 @@ const EnterpriseProvider = ({ children }) => {
             const { data } = await axiosClient.get(`/store/${id}`, config);
             setProducts(data.products);
         } catch (error) {
+            setLoading(false);
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -280,6 +359,16 @@ const EnterpriseProvider = ({ children }) => {
             }, "5000");
         } catch (error) {
             setLoading(false);
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setAlert({
                 msg: error.response.data.msg,
                 error: true
@@ -349,6 +438,16 @@ const EnterpriseProvider = ({ children }) => {
             const { data } = await axiosClient.get('/enterprise', config);
             setEnterprises(data);
         } catch (error) {
+            if(error.code === "ERR_NETWORK"){
+                setAlert({
+                    msg: "Error de conexión, intentalo de nuevo.",
+                    error: true
+                })
+                setTimeout(() => {
+                    setAlert({})
+                }, "5000");
+                handleSumbitApi();
+            }
             setEnterprises({})
         }
         finally{

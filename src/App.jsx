@@ -14,6 +14,7 @@ import { Enterprise } from './pages/Enterprise'
 import { AddStore } from './pages/AddStore'
 import { AddCollaborator } from './pages/AddCollaborator'
 import { AuthProvider } from './context/AuthProvider'
+import { ApiProvider } from './context/ApiProvider'
 import { EnterpriseProvider } from './context/EnterpriseProvider'
 import './App.css'
 import { AddProduct } from './pages/AddProduct'
@@ -26,29 +27,31 @@ import { AddProduct } from './pages/AddProduct'
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <EnterpriseProvider>
-          <Routes>
-            <Route path='/' element={<AuthLayout/>}>
-              <Route index element={<Login/>}/>
-              <Route path='register' element={<Register/>}/>
-              <Route path='forget-password' element={<ForgetPassword/>}/>
-              <Route path='forget-password/:token' element={<NewPassword/>}/>
-              <Route path='confirm/:id' element={<ConfirmAccount/>}/>
-            </Route>
-            <Route path='/enterprises' element={<ProtectedPath/>}>
-              <Route index element={<Enterprises/>}/>
-              <Route path='new-collaborator' element={<AddCollaborator/>}/>
-              <Route path='new-enterprise' element={<AddEnterprise/>}/>
-              <Route path='new-store' element={<AddStore/>}/>
-              <Route path='employees' element={<Employees/>}/>
-              <Route path='new-product/:id' element={<AddProduct/>}/>
-              <Route path='products/:id' element={<Products/>}/>
-              <Route path=':id' element={<Enterprise/>}/>
-            </Route>
-          </Routes>
-        </EnterpriseProvider>
-      </AuthProvider>
+      <ApiProvider>
+        <AuthProvider>
+          <EnterpriseProvider>
+            <Routes>
+              <Route path='/' element={<AuthLayout/>}>
+                <Route index element={<Login/>}/>
+                <Route path='register' element={<Register/>}/>
+                <Route path='forget-password' element={<ForgetPassword/>}/>
+                <Route path='forget-password/:token' element={<NewPassword/>}/>
+                <Route path='confirm/:id' element={<ConfirmAccount/>}/>
+              </Route>
+              <Route path='/enterprises' element={<ProtectedPath/>}>
+                <Route index element={<Enterprises/>}/>
+                <Route path='new-collaborator' element={<AddCollaborator/>}/>
+                <Route path='new-enterprise' element={<AddEnterprise/>}/>
+                <Route path='new-store' element={<AddStore/>}/>
+                <Route path='employees' element={<Employees/>}/>
+                <Route path='new-product/:id' element={<AddProduct/>}/>
+                <Route path='products/:id' element={<Products/>}/>
+                <Route path=':id' element={<Enterprise/>}/>
+              </Route>
+            </Routes>
+          </EnterpriseProvider>
+        </AuthProvider>
+      </ApiProvider>
     </BrowserRouter>
   )
 }

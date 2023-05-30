@@ -63,7 +63,7 @@ export const AddEnterprise = () => {
                     <input
                         id='name' 
                         type="text"
-                        placeholder='Tu nombre'
+                        placeholder='Nombre de la empresa'
                         value={name}
                         onChange={handleName}
                         className="search"
@@ -74,10 +74,11 @@ export const AddEnterprise = () => {
                     <input
                         id='name' 
                         type="tel"
-                        placeholder='Número de teléfono de la empresa'
+                        placeholder='(XXX)-XXX-XX-XX'
                         value={phoneNumber}
                         onChange={handlePhone}
                         className="search" 
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
                     />
                 </div>
                 <div className="form__input">
