@@ -45,11 +45,10 @@ const AuthProvider = ({ children }) => {
             } finally {
                 setLoading(false);
             }
-
-            
+            setLoading(false);
         }
 
-        return () => { authenticateUser() }
+        authenticateUser()
     }, [])
 
     return (
